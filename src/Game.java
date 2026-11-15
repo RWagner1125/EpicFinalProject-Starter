@@ -128,19 +128,23 @@ System.out.println("Choose an option to begin your adventure.");
     /**
      * Displays current player information.
      */
-    private void viewPlayer() {
-        if (player == null) {
-            System.out.println("No player has been created yet.");
-            return;
-        }
 
-        Utils.printHeader("PLAYER INFO");
-        System.out.println("Name: " + player.getName());
-        System.out.println("Level: " + player.getLevel());
-        System.out.println("Theme: " + (player.getGameMode() == null
-                ? "Not selected"
-                : player.getGameMode().getDisplayName()));
+private void viewPlayer() {
+    if (player == null) {
+        System.out.println("No player has been created yet.");
+        return;
     }
+
+    Utils.printHeader("PLAYER INFO");
+    System.out.println("Name: " + player.getName());
+    System.out.println("Level: " + player.getLevel());
+    System.out.println("Health: " + player.getHealth());
+    System.out.println("Energy: " + player.getEnergy());
+    System.out.println("Theme: " + (player.getGameMode() == null
+            ? "Not selected"
+            : player.getGameMode().getDisplayName()));
+}
+
 
     /**
      * Placeholder method students can replace with real features later.
