@@ -11,6 +11,9 @@ public class Player {
     private String name;
     private int level;
     private GameMode gameMode;
+    private int health;
+    private int energy;
+
 
     /**
      * Creates a player with a name and default starting values.
@@ -21,6 +24,8 @@ public class Player {
         this.name = name;
         this.level = 1;
         this.gameMode = null;
+        this.health = 100;
+        this.energy = 50;
     }
 
     public String getName() {
@@ -45,5 +50,12 @@ public class Player {
 
     public void setGameMode(GameMode gameMode) {
         this.gameMode = gameMode;
+    }
+    public int getHealth() {
+        return health;
+    }
+
+    public int getEnergy() {
+        return energy;
     }
 }
