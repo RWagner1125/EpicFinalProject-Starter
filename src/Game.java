@@ -26,7 +26,11 @@ public class Game {
      * Starts the game loop.
      */
     public void start() {
-        Utils.printHeader("Welcome to the Java EPIC Final Project");
+
+Utils.printHeader("Raywag8025 - Fantasy Adventure");
+System.out.println("SDC230 - Object-Oriented Programming");
+System.out.println("Choose an option to begin your adventure.");
+
 
         while (running) {
             displayMenu();
