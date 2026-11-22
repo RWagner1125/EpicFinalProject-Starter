@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
 /**
  * Controls the main game flow and menu system.
  *
@@ -13,7 +13,7 @@ public class Game {
     private Scanner input;
     private Player player;
     private boolean running;
-
+    private ArrayList<Item> inventory = new ArrayList<>();
     /**
      * Constructs the game and prepares required resources.
      */
@@ -47,9 +47,12 @@ System.out.println("Choose an option to begin your adventure.");
                     viewPlayer();
                     break;
                 case 4:
-                    runPlaceholderAction();
+                    addInventoryItem();
                     break;
                 case 5:
+                    viewInventory();
+                    break;
+                case 6:
                     exitGame();
                     break;
                 default:
@@ -69,8 +72,9 @@ System.out.println("Choose an option to begin your adventure.");
         System.out.println("1. Create Player");
         System.out.println("2. Choose Game Theme");
         System.out.println("3. View Player");
-        System.out.println("4. Start Placeholder Action");
-        System.out.println("5. Exit");
+        System.out.println("4. Add Inventory Item");
+        System.out.println("5. View Inventory");
+        System.out.println("6. Exit");
         System.out.println("================================");
     }
 
@@ -166,4 +170,57 @@ private void viewPlayer() {
         System.out.println("Exiting program. Thanks for playing.");
         running = false;
     }
+private void addInventoryItem() {
+
+    if (player == null) {
+        System.out.println("Create a player first.");
+        return;
+    }
+
+    String itemName = Utils.readNonEmptyString(
+        input, "Enter item name: "
+    );
+
+    String itemType = Utils.readNonEmptyString(
+        input, "Enter item type: "
+    );
+
+    System.out.print("Enter item value: ");
+    double itemValue = input.nextDouble();
+    input.nextLine();
+
+    Item newItem = new Item(itemName, itemType, itemValue);
+    inventory.add(newItem);
+
+    System.out.println("Item added: " + newItem.getName());
+}
+
+private void viewInventory() {
+
+    Utils.printHeader("PLAYER INVENTORY");
+
+    if (inventory.isEmpty()) {
+        System.out.println("Your inventory is empty.");
+        return;
+    }
+
+    double totalValue = 0.0;
+
+    for (Item item : inventory) {
+        System.out.printf(
+            "%s | Type: %s | Value: %.2f gold%n",
+            item.getName(),
+            item.getType(),
+            item.getValue()
+        );
+
+        totalValue += item.getValue();
+    }
+
+    System.out.printf(
+        "Total Inventory Value: %.2f gold%n",
+        totalValue
+    );
+
+   }
 }
